@@ -1,7 +1,5 @@
 package net.ichigotake.sqlitehelper.dml;
 
-import android.text.TextUtils;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -76,10 +74,8 @@ public final class Where {
     private void addCondition(String condition, Collection<Object> arguments) {
         conditions.add(condition);
         for (Object argv : arguments) {
-            System.out.println("argv " + argv);
             values.add(argv.toString());
         }
-        System.out.println("----");
     }
 
     private void addCondition(Where where) {
@@ -93,7 +89,6 @@ public final class Where {
         }
 
         String query = "";
-        System.out.println("operators : " + TextUtils.join(", ", logicalOperators));
         for (int i=0,size=conditions.size(); i<size; i++) {
             if (i > 0) {
                 query += " " + logicalOperators.get(i-1) + " ";

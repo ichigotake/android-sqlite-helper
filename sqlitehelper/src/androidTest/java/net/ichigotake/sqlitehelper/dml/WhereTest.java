@@ -54,7 +54,6 @@ public class WhereTest {
             Assert.assertTrue(merged.isEmpty() == where.isEmpty());
             String[] expected = new String[]{"1"};
             for (int i=0,size=expected.length; i<size; i++) {
-                System.out.println(expected[i] + " : " + merged.getArguments()[i]);
                 Assert.assertEquals(expected[i], merged.getArguments()[i]);
             }
         }
