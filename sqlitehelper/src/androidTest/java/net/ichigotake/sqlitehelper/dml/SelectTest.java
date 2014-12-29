@@ -2,6 +2,8 @@ package net.ichigotake.sqlitehelper.dml;
 
 import junit.framework.Assert;
 
+import net.ichigotake.sqlitehelper.MockTable;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;

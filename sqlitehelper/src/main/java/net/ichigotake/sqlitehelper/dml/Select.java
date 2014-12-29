@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.text.TextUtils;
 
 import net.ichigotake.sqlitehelper.Cache;
-import net.ichigotake.sqlitehelper.ddl.DatabaseTable;
+import net.ichigotake.sqlitehelper.ddl.Table;
 import net.ichigotake.sqlitehelper.SQLiteHelper;
 
 import java.util.ArrayList;
@@ -14,15 +14,15 @@ import java.util.List;
 public class Select {
 
     private final SQLiteHelper sqlite;
-    private final DatabaseTable table;
+    private final Table table;
     private final Where where;
     private final List<String> orderBy;
 
-    public Select(DatabaseTable from) {
+    public Select(Table from) {
         this(Cache.getApplicationContext(), from);
     }
 
-    public Select(Context context, DatabaseTable from) {
+    public Select(Context context, Table from) {
         this.sqlite = new SQLiteHelper(context);
         this.table = from;
         this.where = new Where();
