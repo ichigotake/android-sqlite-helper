@@ -25,9 +25,6 @@ robolectric {
     include '**/*Test.class'
     exclude '**/espresso/**/*.class'
 
-    // Specify max number of processes (default is 1)
-    maxParallelForks = 4
-
     // Specify max number of test classes to execute in a test process
     // before restarting the process (default is unlimited)
     forkEvery = 150
