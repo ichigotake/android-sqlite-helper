@@ -1,4 +1,4 @@
-# sqlite-helper
+# sqlite-helper [![Build Status](https://travis-ci.org/ichigotake/android-sqlite-helper.svg)](https://travis-ci.org/ichigotake/android-sqlite-helper)
 
 sqlite-wrapper - [DRAFT] very simple SQLite helpers for AndroidSDK
 
