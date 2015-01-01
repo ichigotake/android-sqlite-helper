@@ -4,7 +4,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class CreateTable {
@@ -33,13 +32,13 @@ public class CreateTable {
             list.add(query);
         }
         for (UniqueField field : schema.getUniqueFields()) {
-            list.add(buildQuery(field));
+            list.add(buildQueryAsUnique(field));
         }
-        return  "CREATE TABLE IF NOT EXISTS (" + TextUtils.join(",", list) + ")";
+        return  "CREATE TABLE " + schema.getTableName() + " IF NOT EXISTS (" + TextUtils.join(",", list) + ")";
     }
 
     /* visible for testing */
-    String buildQuery(UniqueField field) {
+    String buildQueryAsUnique(UniqueField field) {
         List<String> names = new ArrayList<>();
         for (TableField item : field.getFields()) {
             names.add(item.getFieldName());

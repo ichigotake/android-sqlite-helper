@@ -2,7 +2,6 @@ package net.ichigotake.sqlitehelper.ddl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class TableSchemaBuilder {
@@ -24,7 +23,12 @@ public class TableSchemaBuilder {
     }
     
     public TableSchemaBuilder field(TableField[] fields) {
-        Collections.addAll(this.fields, fields);
+        for (TableField field : fields) {
+            this.fields.add(field);
+            if (field.getAttributes().contains(FieldAttribute.UNIQUE)) {
+                unique(field);
+            }
+        }
         return this;
     }
 

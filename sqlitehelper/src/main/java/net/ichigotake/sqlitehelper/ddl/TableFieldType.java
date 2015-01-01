@@ -4,7 +4,7 @@ public enum TableFieldType {
 
     TEXT("TEXT"),
     INTEGER("INTEGER"),
-    LONG("LONG"),
+    LONG("INTEGER"),
     ;
     
     private final String reservedName;
