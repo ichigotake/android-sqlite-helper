@@ -18,7 +18,7 @@ class CreateIndex {
 
     void createIndexIfNotExists() {
         for (Index index : schema.getIndexes()) {
-            database.rawQuery(buildCreateIndexClause(index), new String[]{});
+            database.execSQL(buildCreateIndexClause(index));
         }
     }
     

@@ -17,7 +17,7 @@ public class CreateTable {
     }
     
     public void execute() {
-        database.rawQuery(buildQueryAsCreateTableIfNotExists(), new String[]{});
+        database.execSQL(buildQueryAsCreateTableIfNotExists());
         new CreateIndex(database, schema).createIndexIfNotExists();
     }
 
@@ -34,7 +34,7 @@ public class CreateTable {
         for (UniqueField field : schema.getUniqueFields()) {
             list.add(buildQueryAsUnique(field));
         }
-        return  "CREATE TABLE " + schema.getTableName() + " IF NOT EXISTS (" + TextUtils.join(",", list) + ")";
+        return  "CREATE TABLE IF NOT EXISTS " + schema.getTableName() + " (" + TextUtils.join(",", list) + ")";
     }
 
     /* visible for testing */
