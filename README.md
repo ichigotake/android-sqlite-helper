@@ -12,9 +12,9 @@ Currently status is making a draft.
 
 - [ ] Project naming (Rough naming now)
 - [x] Implement very simple `SELECT` query builder
-- [ ] Implement DDL query builder
+- [x] Implement DDL query builder
 - [ ] TBD: Implement migration helper
-- [ ] Introduce CI (circleci or travis-ci or wrecker?)
+- [x] Introduce CI (circleci or travis-ci or wrecker?)
 - [ ] Writing document
 - [ ] Create sample application
 - [ ] Shipt to jcenter
