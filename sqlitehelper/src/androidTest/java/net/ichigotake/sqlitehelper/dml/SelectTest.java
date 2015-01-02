@@ -1,42 +1,52 @@
 package net.ichigotake.sqlitehelper.dml;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import junit.framework.Assert;
 
+import net.ichigotake.sqlitehelper.MockConfiguration;
 import net.ichigotake.sqlitehelper.MockTable;
+import net.ichigotake.sqlitehelper.SQLiteOpenHelper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 @Config(emulateSdk = 18)
 @RunWith(RobolectricTestRunner.class)
 public class SelectTest {
+    
+    private SQLiteDatabase database() {
+        return new SQLiteOpenHelper(Robolectric.application, new MockConfiguration())
+                .getReadableDatabase();
+    }
 
     @Test
     public void testOrder() {
         {
             String expected = "SELECT * FROM mock";
-            String got = new Select(new MockTable()).buildQuery();
+            String got = new Select(database(), new MockTable()).buildQuery();
             Assert.assertEquals(expected, got);
         }
         {
             String expected = "SELECT * FROM mock ORDER BY _id ASC";
-            String got = new Select(new MockTable())
+            String got = new Select(database(), new MockTable())
                     .orderBy(new Order(MockTable.Field.ID))
                     .buildQuery();
             Assert.assertEquals(expected, got);
         }
         {
             String expected = "SELECT * FROM mock ORDER BY _id ASC";
-            String got = new Select(new MockTable())
+            String got = new Select(database(), new MockTable())
                     .orderBy(new Order(MockTable.Field.ID, Order.Sequence.ASC))
                     .buildQuery();
             Assert.assertEquals(expected, got);
         }
         {
             String expected = "SELECT * FROM mock ORDER BY _id DESC";
-            String got = new Select(new MockTable())
+            String got = new Select(database(), new MockTable())
                     .orderBy(new Order(MockTable.Field.ID, Order.Sequence.DESC))
                     .buildQuery();
             Assert.assertEquals(expected, got);
@@ -45,7 +55,7 @@ public class SelectTest {
 
     @Test
     public void textBuildQuery() {
-        Select query = new Select(new MockTable());
+        Select query = new Select(database(), new MockTable());
         {
             String expected = "SELECT * FROM mock";
             Assert.assertEquals(expected, query.buildQuery());

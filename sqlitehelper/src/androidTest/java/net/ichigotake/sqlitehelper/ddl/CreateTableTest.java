@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteException;
 
 import junit.framework.Assert;
 
+import net.ichigotake.sqlitehelper.MockConfiguration;
 import net.ichigotake.sqlitehelper.MockTable;
 import net.ichigotake.sqlitehelper.SQLiteOpenHelper;
 
@@ -22,9 +23,13 @@ public class CreateTableTest {
         return new MockTableForCreateTable();
     }
     
+    private SQLiteOpenHelper sqliteHelper() {
+        return new SQLiteOpenHelper(Robolectric.application, new MockConfiguration());
+    }
+    
     @Test
     public void testBuildQueryAsCreateTableIfNotExists() {
-        SQLiteOpenHelper sqlite = new SQLiteOpenHelper(Robolectric.application);
+        SQLiteOpenHelper sqlite = sqliteHelper();
         CreateTable createTable = new CreateTable(
                 sqlite.getReadableDatabase(), mock().getTableSchema());
         String expected = "CREATE TABLE IF NOT EXISTS mock_for_create_table (" +
@@ -41,7 +46,7 @@ public class CreateTableTest {
 
     @Test
     public void testBuildUniqueQuery() {
-        SQLiteOpenHelper sqlite = new SQLiteOpenHelper(Robolectric.application);
+        SQLiteOpenHelper sqlite = sqliteHelper();
         CreateTable createTable = new CreateTable(
                 sqlite.getReadableDatabase(), mock().getTableSchema());
         UniqueField sample = new UniqueField(MockTable.Field.CATEGORY_ID);
@@ -50,7 +55,7 @@ public class CreateTableTest {
     
     @Test
     public void testCreateTable() {
-        SQLiteDatabase database = new SQLiteOpenHelper(Robolectric.application).getWritableDatabase();
+        SQLiteDatabase database = sqliteHelper().getWritableDatabase();
         CreateTable createTable = new CreateTable(database, mock().getTableSchema());
         {
             Exception got = null;
@@ -71,7 +76,7 @@ public class CreateTableTest {
     @Test
     public void testCreateIndex() {
         TableSchema schema = mock().getTableSchema();
-        SQLiteDatabase database = new SQLiteOpenHelper(Robolectric.application).getWritableDatabase();
+        SQLiteDatabase database = sqliteHelper().getWritableDatabase();
         CreateTable createTable = new CreateTable(database, schema);
 
         Assert.assertTrue(!indexExists(database, schema));

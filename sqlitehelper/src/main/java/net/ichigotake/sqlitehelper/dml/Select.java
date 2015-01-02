@@ -4,8 +4,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import net.ichigotake.sqlitehelper.Cache;
-import net.ichigotake.sqlitehelper.SQLiteOpenHelper;
 import net.ichigotake.sqlitehelper.ddl.Table;
 
 import java.util.ArrayList;
@@ -17,10 +15,6 @@ public class Select {
     private final Table table;
     private final Where where;
     private final List<String> orderBy;
-
-    public Select(Table from) {
-        this(new SQLiteOpenHelper(Cache.getApplicationContext()).getReadableDatabase(), from);
-    }
 
     public Select(SQLiteDatabase database, Table from) {
         this.database = database;

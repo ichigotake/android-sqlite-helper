@@ -9,36 +9,11 @@ import net.ichigotake.sqlitehelper.ddl.Table;
 
 public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
     
-    public static void initialize(Context context, Configuration configuration) {
-        Cache.applicationContext = context;
-        Cache.configuration = configuration;
-        // Call for onCreate or onUpgrade
-        new SQLiteOpenHelper(context).getReadableDatabase();
-    }
-
-    public static void destroy() {
-        Cache.applicationContext = null;
-        Cache.configuration = null;
-    }
-
-    private static Configuration getCachedConfiguration() {
-        Configuration configuration = Cache.getConfiguration();
-        if (configuration == null) {
-            throw new IllegalStateException("Must call to SQLiteOpenHelper#initialize!");
-        }
-        return configuration;
-    }
-    
     private final Configuration configuration;
-
-    public SQLiteOpenHelper(Context context) {
-        this(context, getCachedConfiguration());
-    }
 
     public SQLiteOpenHelper(Context context, Configuration configuration) {
         super(context, configuration.getDatabaseName(), null, configuration.getDatabaseVersion());
         this.configuration = configuration;
-        Cache.applicationContext = context.getApplicationContext();
     }
 
     @Override

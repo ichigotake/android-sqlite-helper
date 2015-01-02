@@ -10,8 +10,6 @@ import net.ichigotake.sqlitehelper.ddl.Table;
 import net.ichigotake.sqlitehelper.ddl.TableField;
 import net.ichigotake.sqlitehelper.ddl.TableFieldType;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -26,26 +24,9 @@ import java.util.List;
 @RunWith(RobolectricTestRunner.class)
 public class SQLiteOpenHelperTest {
 
-    @Before
-    public void testCacheException() {
-        Exception got = null;
-        try {
-            SQLiteOpenHelper.destroy();
-            new SQLiteOpenHelper(Robolectric.application);
-        } catch (IllegalStateException e) {
-            got = e;
-        }
-        Assert.assertTrue(got != null);
-    }
-    
-    @After
-    public void afterTest() {
-        SQLiteOpenHelper.initialize(Robolectric.application, new MockConfiguration());
-    }
-
     @Test
     public void testInitializer() {
-        SQLiteOpenHelper.initialize(Robolectric.application, new MockConfiguration());
+        new SQLiteOpenHelper(Robolectric.application, new MockConfiguration());
     }
     
     @Test
