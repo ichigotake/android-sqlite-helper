@@ -22,7 +22,7 @@ If you may need rich interfaces, I recommends to use other library.
 - [x] Implement create table configuration
 - [x] Implement very simple `SELECT` query builder
 - [x] Implement DDL query builder
-- [ ] TBD: Implement migration helper
+- [x] Implement migration
 - [x] Introduce CI (circleci or travis-ci or wrecker?)
 - [ ] Writing document
 - [ ] Create sample application

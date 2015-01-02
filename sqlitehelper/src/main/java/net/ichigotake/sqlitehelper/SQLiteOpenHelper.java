@@ -4,8 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import net.ichigotake.sqlitehelper.ddl.AlterTableAdd;
+import net.ichigotake.sqlitehelper.ddl.CreateIndex;
 import net.ichigotake.sqlitehelper.ddl.CreateTable;
-import net.ichigotake.sqlitehelper.ddl.Table;
+import net.ichigotake.sqlitehelper.schema.Table;
 
 public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
     
@@ -29,6 +30,7 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
             if (oldVersion <= table.getSenseVersion() && table.getSenseVersion() < newVersion) {
                 new CreateTable(db, table.getTableSchema()).execute();
             }
+            new CreateIndex(db, table.getTableSchema()).createIndexIfNotExists();
             new AlterTableAdd(db, table).execute();
         }
     }

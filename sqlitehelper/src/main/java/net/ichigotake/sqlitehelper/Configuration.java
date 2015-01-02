@@ -1,6 +1,6 @@
 package net.ichigotake.sqlitehelper;
 
-import net.ichigotake.sqlitehelper.ddl.Table;
+import net.ichigotake.sqlitehelper.schema.Table;
 
 import java.util.List;
 

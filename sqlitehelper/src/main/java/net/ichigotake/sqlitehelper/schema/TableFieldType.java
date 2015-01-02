@@ -1,4 +1,4 @@
-package net.ichigotake.sqlitehelper.ddl;
+package net.ichigotake.sqlitehelper.schema;
 
 public enum TableFieldType {
 

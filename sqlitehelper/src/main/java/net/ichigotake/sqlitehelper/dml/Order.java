@@ -3,7 +3,7 @@ package net.ichigotake.sqlitehelper.dml;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import net.ichigotake.sqlitehelper.ddl.TableField;
+import net.ichigotake.sqlitehelper.schema.TableField;
 
 public class Order implements Parcelable {
 

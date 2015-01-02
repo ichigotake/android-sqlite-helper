@@ -3,6 +3,11 @@ package net.ichigotake.sqlitehelper.ddl;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
+import net.ichigotake.sqlitehelper.schema.FieldAttribute;
+import net.ichigotake.sqlitehelper.schema.TableField;
+import net.ichigotake.sqlitehelper.schema.TableSchema;
+import net.ichigotake.sqlitehelper.schema.UniqueField;
+
 import java.util.ArrayList;
 import java.util.List;
 

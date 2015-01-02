@@ -3,6 +3,8 @@ package net.ichigotake.sqlitehelper.ddl;
 import junit.framework.Assert;
 
 import net.ichigotake.sqlitehelper.MockTable;
+import net.ichigotake.sqlitehelper.schema.Index;
+import net.ichigotake.sqlitehelper.schema.TableField;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import net.ichigotake.sqlitehelper.dml.Select;
+import net.ichigotake.sqlitehelper.schema.Table;
+import net.ichigotake.sqlitehelper.schema.TableField;
 
 public class AlterTableAdd {
 

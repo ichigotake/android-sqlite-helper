@@ -1,4 +1,4 @@
-package net.ichigotake.sqlitehelper.dml;
+package net.ichigotake.sqlitehelper;
 
 import android.annotation.TargetApi;
 import android.database.sqlite.SQLiteException;

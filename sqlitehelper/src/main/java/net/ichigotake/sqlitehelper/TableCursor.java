@@ -2,7 +2,7 @@ package net.ichigotake.sqlitehelper;
 
 import android.database.Cursor;
 
-import net.ichigotake.sqlitehelper.ddl.TableField;
+import net.ichigotake.sqlitehelper.schema.TableField;
 
 public class TableCursor {
 

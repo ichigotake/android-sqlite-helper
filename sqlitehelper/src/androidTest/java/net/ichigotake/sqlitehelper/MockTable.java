@@ -1,11 +1,11 @@
 package net.ichigotake.sqlitehelper;
 
-import net.ichigotake.sqlitehelper.ddl.FieldAttribute;
-import net.ichigotake.sqlitehelper.ddl.Table;
-import net.ichigotake.sqlitehelper.ddl.TableSchema;
-import net.ichigotake.sqlitehelper.ddl.TableSchemaBuilder;
-import net.ichigotake.sqlitehelper.ddl.TableField;
-import net.ichigotake.sqlitehelper.ddl.TableFieldType;
+import net.ichigotake.sqlitehelper.schema.FieldAttribute;
+import net.ichigotake.sqlitehelper.schema.Table;
+import net.ichigotake.sqlitehelper.schema.TableSchema;
+import net.ichigotake.sqlitehelper.schema.TableSchemaBuilder;
+import net.ichigotake.sqlitehelper.schema.TableField;
+import net.ichigotake.sqlitehelper.schema.TableFieldType;
 
 import java.util.Arrays;
 import java.util.List;

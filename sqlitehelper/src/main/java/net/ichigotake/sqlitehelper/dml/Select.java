@@ -4,7 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import net.ichigotake.sqlitehelper.ddl.Table;
+import net.ichigotake.sqlitehelper.schema.Table;
 
 import java.util.ArrayList;
 import java.util.List;

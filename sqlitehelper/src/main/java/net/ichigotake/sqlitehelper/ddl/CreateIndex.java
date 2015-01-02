@@ -3,20 +3,24 @@ package net.ichigotake.sqlitehelper.ddl;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
+import net.ichigotake.sqlitehelper.schema.Index;
+import net.ichigotake.sqlitehelper.schema.TableField;
+import net.ichigotake.sqlitehelper.schema.TableSchema;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class CreateIndex {
+public class CreateIndex {
     
     private final SQLiteDatabase database;
     private final TableSchema schema;
 
-    CreateIndex(SQLiteDatabase database, TableSchema schema) {
+    public CreateIndex(SQLiteDatabase database, TableSchema schema) {
         this.database = database;
         this.schema = schema;
     }
 
-    void createIndexIfNotExists() {
+    public void createIndexIfNotExists() {
         for (Index index : schema.getIndexes()) {
             database.execSQL(buildCreateIndexClause(index));
         }

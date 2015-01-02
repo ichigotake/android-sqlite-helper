@@ -8,6 +8,10 @@ import junit.framework.Assert;
 import net.ichigotake.sqlitehelper.MockConfiguration;
 import net.ichigotake.sqlitehelper.MockTable;
 import net.ichigotake.sqlitehelper.SQLiteOpenHelper;
+import net.ichigotake.sqlitehelper.schema.Index;
+import net.ichigotake.sqlitehelper.schema.Table;
+import net.ichigotake.sqlitehelper.schema.TableSchema;
+import net.ichigotake.sqlitehelper.schema.UniqueField;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

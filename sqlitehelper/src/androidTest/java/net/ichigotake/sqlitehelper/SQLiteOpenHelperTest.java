@@ -5,10 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 
 import junit.framework.Assert;
 
-import net.ichigotake.sqlitehelper.ddl.FieldAttribute;
-import net.ichigotake.sqlitehelper.ddl.Table;
-import net.ichigotake.sqlitehelper.ddl.TableField;
-import net.ichigotake.sqlitehelper.ddl.TableFieldType;
+import net.ichigotake.sqlitehelper.schema.FieldAttribute;
+import net.ichigotake.sqlitehelper.schema.Table;
+import net.ichigotake.sqlitehelper.schema.TableField;
+import net.ichigotake.sqlitehelper.schema.TableFieldType;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

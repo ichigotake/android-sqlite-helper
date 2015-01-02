@@ -1,4 +1,4 @@
-package net.ichigotake.sqlitehelper.dml;
+package net.ichigotake.sqlitehelper;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteTransactionListener;
