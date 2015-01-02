@@ -8,6 +8,14 @@ Currently status is making a draft.
 
 **THIS IS A DEVELOPMENT RELEASE. API MAY CHANGE WITHOUT NOTICE.**
 
+## Policy
+
+This is very simple `SQLiteOpenHelper` wrapper for lightweight application.
+
+Don't use reflection, annotation processor, and other magics.
+
+If you may need rich interfaces, I recommends to use other library.
+
 ## Todo
 
 - [ ] Project naming (Rough naming now)
