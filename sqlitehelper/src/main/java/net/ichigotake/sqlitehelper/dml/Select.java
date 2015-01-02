@@ -1,7 +1,7 @@
 package net.ichigotake.sqlitehelper.dml;
 
-import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
 import net.ichigotake.sqlitehelper.Cache;
@@ -13,17 +13,17 @@ import java.util.List;
 
 public class Select {
 
-    private final SQLiteOpenHelper sqlite;
+    private final SQLiteDatabase database;
     private final Table table;
     private final Where where;
     private final List<String> orderBy;
 
     public Select(Table from) {
-        this(Cache.getApplicationContext(), from);
+        this(new SQLiteOpenHelper(Cache.getApplicationContext()).getReadableDatabase(), from);
     }
 
-    public Select(Context context, Table from) {
-        this.sqlite = new SQLiteOpenHelper(context);
+    public Select(SQLiteDatabase database, Table from) {
+        this.database = database;
         this.table = from;
         this.where = new Where();
         this.orderBy = new ArrayList<>();
@@ -43,8 +43,7 @@ public class Select {
     }
 
     public Cursor execute() {
-        return sqlite.getReadableDatabase()
-                .rawQuery(buildQuery(), getArguments());
+        return database.rawQuery(buildQuery(), getArguments());
     }
 
     /** visible for testing */
