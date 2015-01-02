@@ -1,20 +1,20 @@
 package net.ichigotake.sqlitehelper.dml;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteTransactionListener;
 
-public class QueryTransaction {
+public class SQLiteTransaction {
 
     private final SQLiteDatabase database;
 
-    public QueryTransaction(SQLiteDatabase database) {
+    public SQLiteTransaction(SQLiteDatabase database) {
         this.database = database;
     }
 
-    public void execute(TransactionTask task) throws SQLiteTransactionException {
+    public void execute(SQLiteTransactionListener listener) throws SQLiteTransactionException {
         Exception exception = null;
         try {
-            database.beginTransaction();
-            task.execute();
+            database.beginTransactionWithListener(listener);
             database.setTransactionSuccessful();
         } catch (Exception e) {
             exception  = e;
@@ -25,5 +25,4 @@ public class QueryTransaction {
             }
         }
     }
-
 }
