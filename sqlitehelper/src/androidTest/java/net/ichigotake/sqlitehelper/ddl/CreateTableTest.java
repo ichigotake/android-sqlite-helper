@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteException;
 import junit.framework.Assert;
 
 import net.ichigotake.sqlitehelper.MockTable;
-import net.ichigotake.sqlitehelper.SQLiteHelper;
+import net.ichigotake.sqlitehelper.SQLiteOpenHelper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,12 +18,16 @@ import org.robolectric.annotation.Config;
 @RunWith(RobolectricTestRunner.class)
 public class CreateTableTest {
     
+    private Table mock() {
+        return new MockTableForCreateTable();
+    }
+    
     @Test
     public void testBuildQueryAsCreateTableIfNotExists() {
-        SQLiteHelper sqlite = new SQLiteHelper(Robolectric.application);
+        SQLiteOpenHelper sqlite = new SQLiteOpenHelper(Robolectric.application);
         CreateTable createTable = new CreateTable(
-                sqlite.getReadableDatabase(), new MockTable().getTableSchema());
-        String expected = "CREATE TABLE IF NOT EXISTS mock (" +
+                sqlite.getReadableDatabase(), mock().getTableSchema());
+        String expected = "CREATE TABLE IF NOT EXISTS mock_for_create_table (" +
                 "_id INTEGER PRIMARY KEY," +
                 "item_name TEXT," +
                 "item_type TEXT," +
@@ -37,21 +41,21 @@ public class CreateTableTest {
 
     @Test
     public void testBuildUniqueQuery() {
-        SQLiteHelper sqlite = new SQLiteHelper(Robolectric.application);
+        SQLiteOpenHelper sqlite = new SQLiteOpenHelper(Robolectric.application);
         CreateTable createTable = new CreateTable(
-                sqlite.getReadableDatabase(), new MockTable().getTableSchema());
+                sqlite.getReadableDatabase(), mock().getTableSchema());
         UniqueField sample = new UniqueField(MockTable.Field.CATEGORY_ID);
         Assert.assertEquals("UNIQUE (category_id)", createTable.buildQueryAsUnique(sample));
     }
     
     @Test
     public void testCreateTable() {
-        SQLiteDatabase database = new SQLiteHelper(Robolectric.application).getWritableDatabase();
-        CreateTable createTable = new CreateTable(database, new MockTable().getTableSchema());
+        SQLiteDatabase database = new SQLiteOpenHelper(Robolectric.application).getWritableDatabase();
+        CreateTable createTable = new CreateTable(database, mock().getTableSchema());
         {
             Exception got = null;
             try {
-                database.rawQuery("SELECT * FROM mock", new String[]{});
+                database.rawQuery("SELECT * FROM mock_for_create_table", new String[]{});
             } catch (SQLiteException e) {
                 got = e;
             }
@@ -59,15 +63,15 @@ public class CreateTableTest {
         }
         database.execSQL(createTable.buildQueryAsCreateTableIfNotExists());
         {
-            database.execSQL("SELECT * FROM mock", new String[]{});
+            database.execSQL("SELECT * FROM mock_for_create_table", new String[]{});
             Assert.assertTrue(true);
         }
     }
 
     @Test
     public void testCreateIndex() {
-        TableSchema schema = new MockTable().getTableSchema();
-        SQLiteDatabase database = new SQLiteHelper(Robolectric.application).getWritableDatabase();
+        TableSchema schema = mock().getTableSchema();
+        SQLiteDatabase database = new SQLiteOpenHelper(Robolectric.application).getWritableDatabase();
         CreateTable createTable = new CreateTable(database, schema);
 
         Assert.assertTrue(!indexExists(database, schema));
@@ -94,4 +98,14 @@ public class CreateTableTest {
         return true;
     }
 
+}
+
+class MockTableForCreateTable extends MockTable {
+    
+    @Override
+    public String getTableName() {
+        return "mock_for_create_table";
+        
+    }
+    
 }

@@ -21,7 +21,7 @@ class CreateIndex {
             database.execSQL(buildCreateIndexClause(index));
         }
     }
-    
+
     /* visible for testing */
     String buildCreateIndexClause(Index index) {
         return "CREATE INDEX IF NOT EXISTS " + buildIndexName(index)

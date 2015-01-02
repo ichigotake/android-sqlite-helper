@@ -21,8 +21,12 @@ public class TableSchemaBuilder {
     public TableSchema build() {
         return new TableSchema(tableName, fields, indexes, uniqueFields);
     }
-    
+
     public TableSchemaBuilder field(TableField[] fields) {
+        return field(Arrays.asList(fields));
+    }
+
+    public TableSchemaBuilder field(List<TableField> fields) {
         for (TableField field : fields) {
             this.fields.add(field);
             if (field.getAttributes().contains(FieldAttribute.UNIQUE)) {

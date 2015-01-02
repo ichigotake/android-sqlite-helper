@@ -11,7 +11,7 @@ Currently status is making a draft.
 ## Todo
 
 - [ ] Project naming (Rough naming now)
-- [ ] Implement create table configuration
+- [x] Implement create table configuration
 - [x] Implement very simple `SELECT` query builder
 - [x] Implement DDL query builder
 - [ ] TBD: Implement migration helper

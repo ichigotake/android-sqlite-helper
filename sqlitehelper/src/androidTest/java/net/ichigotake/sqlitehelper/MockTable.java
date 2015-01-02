@@ -56,10 +56,15 @@ public class MockTable implements Table {
     @Override
     public TableSchema getTableSchema() {
         return new TableSchemaBuilder(getTableName())
-                .field(Field.values())
+                .field(getTableFields())
                 .index(Field.ID)
                 .unique(Field.ITEM_NAME, Field.ITEM_TYPE)
                 .build();
+    }
+
+    @Override
+    public List<TableField> getTableFields() {
+        return Arrays.<TableField>asList(Field.values());
     }
 
     @Override
