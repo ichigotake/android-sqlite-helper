@@ -19,16 +19,23 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
         Cache.applicationContext = null;
     }
 
-    private static Configuration getConfiguration() {
+    private static Configuration getCachedConfiguration() {
         Configuration configuration = Cache.getConfiguration();
         if (configuration == null) {
             throw new IllegalStateException("Must call to SQLiteOpenHelper#initialize!");
         }
         return configuration;
     }
+    
+    private final Configuration configuration;
 
     public SQLiteOpenHelper(Context context) {
-        super(context, getConfiguration().getDatabaseName(), null, getConfiguration().getDatabaseVersion());
+        this(context, getCachedConfiguration());
+    }
+
+    public SQLiteOpenHelper(Context context, Configuration configuration) {
+        super(context, configuration.getDatabaseName(), null, configuration.getDatabaseVersion());
+        this.configuration = configuration;
     }
 
     @Override
@@ -45,5 +52,10 @@ public class SQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
                 new CreateTable(db, table.getTableSchema()).execute();
             }
         }
+    }
+    
+    public Configuration getConfiguration() {
+        return configuration;
+        
     }
 }
