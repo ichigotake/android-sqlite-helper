@@ -4,9 +4,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import junit.framework.Assert;
 
+import net.ichigotake.sqlitehelper.DatabaseHelper;
 import net.ichigotake.sqlitehelper.MockConfiguration;
 import net.ichigotake.sqlitehelper.MockTable;
-import net.ichigotake.sqlitehelper.SQLiteOpenHelper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +19,7 @@ import org.robolectric.annotation.Config;
 public class SelectTest {
     
     private SQLiteDatabase database() {
-        return new SQLiteOpenHelper(Robolectric.application, new MockConfiguration())
+        return new DatabaseHelper(Robolectric.application, new MockConfiguration())
                 .getReadableDatabase();
     }
 

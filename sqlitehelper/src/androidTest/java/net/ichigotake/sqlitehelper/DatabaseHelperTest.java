@@ -22,18 +22,18 @@ import java.util.List;
 
 @Config(emulateSdk = 18)
 @RunWith(RobolectricTestRunner.class)
-public class SQLiteOpenHelperTest {
+public class DatabaseHelperTest {
 
     @Test
     public void testInitializer() {
-        new SQLiteOpenHelper(Robolectric.application, new MockConfiguration());
+        new DatabaseHelper(Robolectric.application, new MockConfiguration());
     }
     
     @Test
     public void testMigrate() {
         {
             Configuration configuration = new ConfigurationBeforeUpgrade();
-            SQLiteDatabase database = new SQLiteOpenHelper(Robolectric.application, configuration)
+            SQLiteDatabase database = new DatabaseHelper(Robolectric.application, configuration)
                     .getWritableDatabase();
             Cursor cursor = database.rawQuery("SELECT * FROM mock", new String[]{});
             Assert.assertTrue("Before migrate", cursor.getColumnIndex(NewField.fieldName) == -1);
@@ -41,9 +41,9 @@ public class SQLiteOpenHelperTest {
         {
             Configuration configuration = new ConfigurationAfterUpgrade();
             // exec migration
-            new SQLiteOpenHelper(Robolectric.application, configuration).getWritableDatabase();
+            new DatabaseHelper(Robolectric.application, configuration).getWritableDatabase();
             
-            Cursor cursor = new SQLiteOpenHelper(Robolectric.application, configuration)
+            Cursor cursor = new DatabaseHelper(Robolectric.application, configuration)
                     .getReadableDatabase()
                     .rawQuery("SELECT * FROM mock", new String[]{});
             Assert.assertTrue("After migrate", cursor.getColumnIndex(NewField.fieldName) >= 0);

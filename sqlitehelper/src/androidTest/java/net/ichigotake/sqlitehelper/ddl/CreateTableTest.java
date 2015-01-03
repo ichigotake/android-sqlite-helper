@@ -5,9 +5,9 @@ import android.database.sqlite.SQLiteException;
 
 import junit.framework.Assert;
 
+import net.ichigotake.sqlitehelper.DatabaseHelper;
 import net.ichigotake.sqlitehelper.MockConfiguration;
 import net.ichigotake.sqlitehelper.MockTable;
-import net.ichigotake.sqlitehelper.SQLiteOpenHelper;
 import net.ichigotake.sqlitehelper.schema.Index;
 import net.ichigotake.sqlitehelper.schema.Table;
 import net.ichigotake.sqlitehelper.schema.TableSchema;
@@ -27,13 +27,13 @@ public class CreateTableTest {
         return new MockTableForCreateTable();
     }
     
-    private SQLiteOpenHelper sqliteHelper() {
-        return new SQLiteOpenHelper(Robolectric.application, new MockConfiguration());
+    private DatabaseHelper sqliteHelper() {
+        return new DatabaseHelper(Robolectric.application, new MockConfiguration());
     }
     
     @Test
     public void testBuildQueryAsCreateTableIfNotExists() {
-        SQLiteOpenHelper sqlite = sqliteHelper();
+        DatabaseHelper sqlite = sqliteHelper();
         CreateTable createTable = new CreateTable(
                 sqlite.getReadableDatabase(), mock().getTableSchema());
         String expected = "CREATE TABLE IF NOT EXISTS mock_for_create_table (" +
@@ -50,7 +50,7 @@ public class CreateTableTest {
 
     @Test
     public void testBuildUniqueQuery() {
-        SQLiteOpenHelper sqlite = sqliteHelper();
+        DatabaseHelper sqlite = sqliteHelper();
         CreateTable createTable = new CreateTable(
                 sqlite.getReadableDatabase(), mock().getTableSchema());
         UniqueField sample = new UniqueField(MockTable.Field.CATEGORY_ID);

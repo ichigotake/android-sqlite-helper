@@ -4,9 +4,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import junit.framework.Assert;
 
+import net.ichigotake.sqlitehelper.DatabaseHelper;
 import net.ichigotake.sqlitehelper.MockConfiguration;
 import net.ichigotake.sqlitehelper.MockTable;
-import net.ichigotake.sqlitehelper.SQLiteOpenHelper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ public class AlterTableAddTest {
     
     @Test
     public void testBuildQuery() {
-        SQLiteDatabase database = new SQLiteOpenHelper(Robolectric.application, new MockConfiguration())
+        SQLiteDatabase database = new DatabaseHelper(Robolectric.application, new MockConfiguration())
                 .getWritableDatabase();
         AlterTableAdd alterTableAdd = new AlterTableAdd(database, new MockTable());
         String expected = "ALTER TABLE mock ADD COLUMN category_id INTEGER";
