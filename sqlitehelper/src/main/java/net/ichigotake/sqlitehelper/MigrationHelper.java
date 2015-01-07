@@ -13,6 +13,7 @@ public class MigrationHelper {
         for (Table table : configuration.getDatabaseTables()) {
             new CreateTable(db, table.getTableSchema()).createTableIfNotExists();
         }
+        configuration.getMigrationCallback().onAfterCreate(db);
     }
 
     public static void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion, Configuration configuration) {
@@ -23,7 +24,7 @@ public class MigrationHelper {
             new CreateIndex(db, table.getTableSchema()).createIndexIfNotExists();
             new AlterTable(db, table).addColumn();
         }
-        configuration.getMigrationCallback().onAfterCreateTable(db);
+        configuration.getMigrationCallback().onAfterUpgrade(db, oldVersion, newVersion);
     }
 
     private MigrationHelper() {}
