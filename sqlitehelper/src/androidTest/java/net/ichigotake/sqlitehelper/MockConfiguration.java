@@ -23,4 +23,9 @@ public class MockConfiguration implements Configuration {
     public String getDatabaseName() {
         return "mock.db";
     }
+
+    @Override
+    public MigrationCallback getMigrationCallback() {
+        return new NoMigrationCallback();
+    }
 }
