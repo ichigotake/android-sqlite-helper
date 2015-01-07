@@ -23,6 +23,7 @@ public class MigrationHelper {
             new CreateIndex(db, table.getTableSchema()).createIndexIfNotExists();
             new AlterTable(db, table).addColumn();
         }
+        configuration.getMigrationCallback().onAfterCreateTable(db);
     }
 
     private MigrationHelper() {}

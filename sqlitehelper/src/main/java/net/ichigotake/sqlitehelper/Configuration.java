@@ -11,5 +11,7 @@ public interface Configuration {
     int getDatabaseVersion();
     
     String getDatabaseName();
+
+    MigrationCallback getMigrationCallback();
     
 }
