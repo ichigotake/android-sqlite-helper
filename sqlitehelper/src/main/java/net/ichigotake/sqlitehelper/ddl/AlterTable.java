@@ -7,17 +7,17 @@ import net.ichigotake.sqlitehelper.dml.Select;
 import net.ichigotake.sqlitehelper.schema.Table;
 import net.ichigotake.sqlitehelper.schema.TableField;
 
-public class AlterTableAdd {
+public class AlterTable {
 
     private final SQLiteDatabase database;
     private final Table table;
 
-    public AlterTableAdd(SQLiteDatabase database, Table table) {
+    public AlterTable(SQLiteDatabase database, Table table) {
         this.database = database;
         this.table = table;
     }
     
-    public void execute() {
+    public void addColumn() {
         for (TableField field : table.getTableFields()) {
             Cursor cursor = new Select(database, table).execute();
             boolean fieldExists = cursor.getColumnIndex(field.getFieldName()) >= 0;

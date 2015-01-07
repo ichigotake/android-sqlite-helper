@@ -21,7 +21,7 @@ public class CreateTable {
         this.schema = schema;
     }
     
-    public void execute() {
+    public void createTableIfNotExists() {
         database.execSQL(buildQueryAsCreateTableIfNotExists());
         new CreateIndex(database, schema).createIndexIfNotExists();
     }

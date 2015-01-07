@@ -16,15 +16,15 @@ import org.robolectric.annotation.Config;
 
 @Config(emulateSdk = 18)
 @RunWith(RobolectricTestRunner.class)
-public class AlterTableAddTest {
+public class AlterTableTest {
     
     @Test
     public void testBuildQuery() {
         SQLiteDatabase database = new DatabaseHelper(Robolectric.application, new MockConfiguration())
                 .getWritableDatabase();
-        AlterTableAdd alterTableAdd = new AlterTableAdd(database, new MockTable());
+        AlterTable alterTable = new AlterTable(database, new MockTable());
         String expected = "ALTER TABLE mock ADD COLUMN category_id INTEGER";
-        Assert.assertEquals(expected, alterTableAdd.buildQuery(MockTable.Field.CATEGORY_ID));
+        Assert.assertEquals(expected, alterTable.buildQuery(MockTable.Field.CATEGORY_ID));
     }
     
 }

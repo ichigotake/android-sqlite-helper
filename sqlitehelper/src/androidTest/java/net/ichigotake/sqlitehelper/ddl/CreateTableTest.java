@@ -84,7 +84,7 @@ public class CreateTableTest {
         CreateTable createTable = new CreateTable(database, schema);
 
         Assert.assertTrue(!indexExists(database, schema));
-        createTable.execute();
+        createTable.createTableIfNotExists();
         Assert.assertTrue(indexExists(database, schema));
     }
     
