@@ -17,7 +17,7 @@ public class MigrationHelper {
 
     public static void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion, Configuration configuration) {
         for (Table table : configuration.getDatabaseTables()) {
-            if (oldVersion <= table.getSenseVersion() && table.getSenseVersion() < newVersion) {
+            if (oldVersion <= table.getSenseVersion() && table.getSenseVersion() <= newVersion) {
                 new CreateTable(db, table.getTableSchema()).createTableIfNotExists();
             }
             new CreateIndex(db, table.getTableSchema()).createIndexIfNotExists();
