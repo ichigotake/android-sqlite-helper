@@ -10,9 +10,9 @@ import net.ichigotake.sqlitehelper.schema.TableField;
 public class AlterTable {
 
     private final SQLiteDatabase database;
-    private final Table table;
+    private final Table<?> table;
 
-    public AlterTable(SQLiteDatabase database, Table table) {
+    public AlterTable(SQLiteDatabase database, Table<?> table) {
         this.database = database;
         this.table = table;
     }
