@@ -1,7 +1,5 @@
 package net.ichigotake.sqlitehelper.schema;
 
-import java.util.List;
-
 public interface Table {
     
     String getTableName();
@@ -10,5 +8,4 @@ public interface Table {
     
     TableSchema getTableSchema();
     
-    List<TableField> getTableFields();
 }

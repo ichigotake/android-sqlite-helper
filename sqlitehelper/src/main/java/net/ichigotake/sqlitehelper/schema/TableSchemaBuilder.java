@@ -22,7 +22,7 @@ public class TableSchemaBuilder {
         return new TableSchema(tableName, fields, indexes, uniqueFields);
     }
 
-    public TableSchemaBuilder field(TableField[] fields) {
+    public TableSchemaBuilder field(TableField... fields) {
         return field(Arrays.asList(fields));
     }
 

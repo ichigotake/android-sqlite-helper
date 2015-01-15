@@ -9,6 +9,7 @@ import net.ichigotake.sqlitehelper.schema.FieldAttribute;
 import net.ichigotake.sqlitehelper.schema.Table;
 import net.ichigotake.sqlitehelper.schema.TableField;
 import net.ichigotake.sqlitehelper.schema.TableFieldType;
+import net.ichigotake.sqlitehelper.schema.TableSchema;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +17,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,7 +56,7 @@ class ConfigurationBeforeUpgrade extends MockConfiguration {
 
     @Override
     public String getDatabaseName() {
-        return "mock_for_migration";
+        return super.getDatabaseName() + "_for_migration";
     }
     
     @Override
@@ -83,11 +83,10 @@ class ConfigurationAfterUpgrade extends ConfigurationBeforeUpgrade {
 class MockTableForUpgrade extends MockTable {
     
     @Override
-    public List<TableField> getTableFields() {
-        List<TableField> fields = new ArrayList<>();
-        fields.addAll(super.getTableFields());
-        fields.add(new NewField());
-        return fields;
+    public TableSchema getTableSchema() {
+        return createTableSchemaBuilder()
+                .field(new NewField())
+                .build();
     }
     
 }

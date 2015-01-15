@@ -18,7 +18,7 @@ public class AlterTable {
     }
     
     public void addColumn() {
-        for (TableField field : table.getTableFields()) {
+        for (TableField field : table.getTableSchema().getFields()) {
             Cursor cursor = new Select(database, table).execute();
             boolean fieldExists = cursor.getColumnIndex(field.getFieldName()) >= 0;
             if (fieldExists) {
