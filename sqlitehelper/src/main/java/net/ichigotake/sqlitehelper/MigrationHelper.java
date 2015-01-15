@@ -17,12 +17,13 @@ public class MigrationHelper {
     }
 
     public static void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion, Configuration configuration) {
+        AlterTable alterTable = new AlterTable(db);
         for (Table table : configuration.getDatabaseTables()) {
             if (oldVersion <= table.getCreatedVersion() && table.getCreatedVersion() <= newVersion) {
                 new CreateTable(db, table.getTableSchema()).createTableIfNotExists();
             }
             new CreateIndex(db, table.getTableSchema()).createIndexIfNotExists();
-            new AlterTable(db, table).addColumn();
+            alterTable.addColumnIfNotExists(table);
         }
         configuration.getMigrationCallback().onAfterUpgrade(db, oldVersion, newVersion);
     }

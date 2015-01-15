@@ -22,9 +22,10 @@ public class AlterTableTest {
     public void testBuildQuery() {
         SQLiteDatabase database = new DatabaseHelper(Robolectric.application, new MockConfiguration())
                 .getWritableDatabase();
-        AlterTable alterTable = new AlterTable(database, new MockTable());
+        MockTable mock = new MockTable();
+        AlterTable alterTable = new AlterTable(database);
         String expected = "ALTER TABLE mock ADD COLUMN category_id INTEGER";
-        Assert.assertEquals(expected, alterTable.buildQuery(MockTable.Field.CATEGORY_ID));
+        Assert.assertEquals(expected, alterTable.buildQuery(mock.getTableName(), MockTable.Field.CATEGORY_ID));
     }
     
 }
