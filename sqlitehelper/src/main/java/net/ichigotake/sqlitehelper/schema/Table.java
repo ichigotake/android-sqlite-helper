@@ -4,7 +4,7 @@ public interface Table {
     
     String getTableName();
     
-    int getSenseVersion();
+    int getCreatedVersion();
     
     TableSchema getTableSchema();
     

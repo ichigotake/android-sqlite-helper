@@ -49,7 +49,7 @@ public class MockTable implements Table {
     }
 
     @Override
-    public int getSenseVersion() {
+    public int getCreatedVersion() {
         return 1;
     }
 
