@@ -20,12 +20,12 @@ If you may need rich interfaces, I recommends to use other library.
 
 ## Todo
 
-- [ ] Project naming (Rough naming now)
-- [x] Implement create table configuration
-- [x] Implement very simple `SELECT` query builder
-- [x] Implement DDL query builder
-- [x] Implement migration
-- [x] Introduce CI (circleci or travis-ci or wrecker?)
+- [x] ~~Project naming (Rough naming now)~~
+- [x] ~~Implement create table configuration~~
+- [x] ~~Implement very simple `SELECT` query builder~~
+- [x] ~~Implement DDL query builder~~
+- [x] ~~Implement migration~~
+- [x] ~~Introduce CI (circleci or travis-ci or wrecker?)~~
 - [ ] Writing document
 - [ ] Create sample application
 - [ ] Shipt to jcenter
