@@ -2,7 +2,7 @@ package net.ichigotake.sqlitehelper.schema;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import net.ichigotake.sqlitehelper.table.RowMapper;
+import net.ichigotake.sqlitehelper.table.Table;
 
 public interface TableDefinition {
 
@@ -12,6 +12,6 @@ public interface TableDefinition {
 
     TableSchema getTableSchema();
 
-    RowMapper getTable(SQLiteDatabase database);
+    Table getTable(SQLiteDatabase database);
 
 }
