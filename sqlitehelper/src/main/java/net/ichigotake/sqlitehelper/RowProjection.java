@@ -1,4 +1,4 @@
-package net.ichigotake.sqlitehelper.table;
+package net.ichigotake.sqlitehelper;
 
 import android.database.Cursor;
 
