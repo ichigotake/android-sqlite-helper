@@ -42,7 +42,7 @@ public class Select {
 
     /** visible for testing */
     String buildQuery() {
-        String query = "SELECT * FROM " + tableDefinition.getTableName();
+        String query = "SELECT * FROM " + tableName;
         if (!where.isEmpty()) {
             query += " WHERE " + where.getQuery();
         }

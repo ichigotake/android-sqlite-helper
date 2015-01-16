@@ -10,6 +10,6 @@ public interface TableDefinition {
 
     TableSchema getTableSchema();
 
-    SelectableTable getTable(SQLiteDatabase database);
+    Table getTable(SQLiteDatabase database);
 
 }

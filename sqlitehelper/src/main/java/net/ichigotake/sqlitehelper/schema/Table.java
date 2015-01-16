@@ -2,8 +2,8 @@ package net.ichigotake.sqlitehelper.schema;
 
 import android.database.Cursor;
 
-public interface SelectableTable<T> {
+public interface Table<T> {
 
-    T retrieveItem(Cursor cursor);
+    T convertFrom(Cursor cursor);
 
 }
