@@ -2,12 +2,12 @@ package net.ichigotake.sqlitehelper;
 
 import android.database.Cursor;
 
-import net.ichigotake.sqlitehelper.schema.Table;
-import net.ichigotake.sqlitehelper.schema.DeletableTable;
-import net.ichigotake.sqlitehelper.schema.UpdatableTable;
+import net.ichigotake.sqlitehelper.table.RowMapper;
+import net.ichigotake.sqlitehelper.table.DeletableTable;
+import net.ichigotake.sqlitehelper.table.UpdatableTable;
 
 public class MockTable
-        implements Table<Object>,
+        implements RowMapper<Object>,
         UpdatableTable<Object>,
         DeletableTable<Object> {
     

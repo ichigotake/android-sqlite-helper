@@ -2,6 +2,8 @@ package net.ichigotake.sqlitehelper.schema;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import net.ichigotake.sqlitehelper.table.RowMapper;
+
 public interface TableDefinition {
 
     String getTableName();
@@ -10,6 +12,6 @@ public interface TableDefinition {
 
     TableSchema getTableSchema();
 
-    Table getTable(SQLiteDatabase database);
+    RowMapper getTable(SQLiteDatabase database);
 
 }
