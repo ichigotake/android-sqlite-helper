@@ -12,13 +12,17 @@ import java.util.List;
 public class Select {
 
     private final SQLiteDatabase database;
-    private final TableDefinition tableDefinition;
+    private final String tableName;
     private final Where where;
     private final List<String> orderBy;
 
     public Select(SQLiteDatabase database, TableDefinition from) {
+        this(database, from.getTableName());
+    }
+
+    public Select(SQLiteDatabase database, String from) {
         this.database = database;
-        this.tableDefinition = from;
+        this.tableName = from;
         this.where = new Where();
         this.orderBy = new ArrayList<>();
     }
