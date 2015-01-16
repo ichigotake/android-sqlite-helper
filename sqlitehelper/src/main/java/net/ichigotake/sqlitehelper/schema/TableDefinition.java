@@ -2,9 +2,7 @@ package net.ichigotake.sqlitehelper.schema;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import net.ichigotake.sqlitehelper.dml.TableQuery;
-
-public interface Table {
+public interface TableDefinition {
 
     String getTableName();
     
@@ -12,6 +10,6 @@ public interface Table {
 
     TableSchema getTableSchema();
 
-    TableQuery createTableQuery(SQLiteDatabase database);
+    SelectableTable getTable(SQLiteDatabase database);
 
 }

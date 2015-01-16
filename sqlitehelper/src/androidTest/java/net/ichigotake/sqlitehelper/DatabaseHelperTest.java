@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import junit.framework.Assert;
 
 import net.ichigotake.sqlitehelper.schema.FieldAttribute;
-import net.ichigotake.sqlitehelper.schema.Table;
+import net.ichigotake.sqlitehelper.schema.TableDefinition;
 import net.ichigotake.sqlitehelper.schema.TableField;
 import net.ichigotake.sqlitehelper.schema.TableFieldType;
 import net.ichigotake.sqlitehelper.schema.TableSchema;
@@ -75,13 +75,13 @@ class ConfigurationAfterUpgrade extends ConfigurationBeforeUpgrade {
     }
 
     @Override
-    public List<Table> getDatabaseTables() {
-        return Arrays.<Table>asList(new MockTableForUpgrade());
+    public List<TableDefinition> getDatabaseTables() {
+        return Arrays.<TableDefinition>asList(new MockTableDefinitionForUpgrade());
     }
 
 }
 
-class MockTableForUpgrade extends MockTable {
+class MockTableDefinitionForUpgrade extends MockTableDefinition {
    
     @Override
     public TableSchema getTableSchema() {
