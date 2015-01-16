@@ -1,5 +1,7 @@
 package net.ichigotake.sqlitehelper;
 
+import android.database.Cursor;
+
 import net.ichigotake.sqlitehelper.schema.FieldAttribute;
 import net.ichigotake.sqlitehelper.schema.Table;
 import net.ichigotake.sqlitehelper.schema.TableSchema;
@@ -10,7 +12,7 @@ import net.ichigotake.sqlitehelper.schema.TableFieldType;
 import java.util.Arrays;
 import java.util.List;
 
-public class MockTable implements Table {
+public class MockTable implements Table<Object> {
 
     public static enum Field implements TableField {
 
@@ -56,7 +58,7 @@ public class MockTable implements Table {
     @Override
     public TableSchema getTableSchema() {
         return new TableSchemaBuilder(getTableName())
-                .field(getTableFields())
+                .field(Field.values())
                 .index(Field.ID)
                 .unique(Field.ITEM_NAME, Field.ITEM_TYPE)
                 .build();
@@ -66,6 +68,11 @@ public class MockTable implements Table {
     public List<TableField> getTableFields() {
         return Arrays.<TableField>asList(Field.values());
     }
+	@Override
+    
+    public Object retrieveItem(Cursor cursor) {
+		throw new RuntimeException("TBD");
+	}
 
     @Override
     public String getTableName() {
