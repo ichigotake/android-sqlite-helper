@@ -17,7 +17,14 @@ public class TableSchemaBuilder {
         this.indexes = new ArrayList<>();
         this.uniqueFields = new ArrayList<>();
     }
-    
+    public TableSchemaBuilder(TableSchema schema) {
+        this.tableName = schema.getTableName();
+        this.fields = schema.getFields();
+        this.indexes = schema.getIndexes();
+        this.uniqueFields = schema.getUniqueFields();
+    }
+
+
     public TableSchema build() {
         return new TableSchema(tableName, fields, indexes, uniqueFields);
     }

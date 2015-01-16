@@ -10,6 +10,7 @@ import net.ichigotake.sqlitehelper.schema.Table;
 import net.ichigotake.sqlitehelper.schema.TableField;
 import net.ichigotake.sqlitehelper.schema.TableFieldType;
 import net.ichigotake.sqlitehelper.schema.TableSchema;
+import net.ichigotake.sqlitehelper.schema.TableSchemaBuilder;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -70,7 +71,7 @@ class ConfigurationAfterUpgrade extends ConfigurationBeforeUpgrade {
 
     @Override
     public int getDatabaseVersion() {
-        return 2;
+        return super.getDatabaseVersion() + 1;
     }
 
     @Override
@@ -81,10 +82,10 @@ class ConfigurationAfterUpgrade extends ConfigurationBeforeUpgrade {
 }
 
 class MockTableForUpgrade extends MockTable {
-    
+   
     @Override
     public TableSchema getTableSchema() {
-        return createTableSchemaBuilder()
+        return new TableSchemaBuilder(super.getTableSchema())
                 .field(new NewField())
                 .build();
     }

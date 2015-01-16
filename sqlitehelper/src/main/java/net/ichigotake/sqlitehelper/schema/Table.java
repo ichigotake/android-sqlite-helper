@@ -1,15 +1,17 @@
 package net.ichigotake.sqlitehelper.schema;
 
-import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
-public interface Table<T> {
+import net.ichigotake.sqlitehelper.dml.TableQuery;
+
+public interface Table {
 
     String getTableName();
     
     int getCreatedVersion();
-    
+
     TableSchema getTableSchema();
-    
-    T retrieveItem(Cursor cursor);
+
+    TableQuery createTableQuery(SQLiteDatabase database);
 
 }
