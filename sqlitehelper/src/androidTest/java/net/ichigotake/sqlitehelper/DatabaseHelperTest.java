@@ -6,9 +6,11 @@ import android.database.sqlite.SQLiteDatabase;
 import junit.framework.Assert;
 
 import net.ichigotake.sqlitehelper.schema.FieldAttribute;
-import net.ichigotake.sqlitehelper.schema.Table;
+import net.ichigotake.sqlitehelper.schema.TableDefinition;
 import net.ichigotake.sqlitehelper.schema.TableField;
 import net.ichigotake.sqlitehelper.schema.TableFieldType;
+import net.ichigotake.sqlitehelper.schema.TableSchema;
+import net.ichigotake.sqlitehelper.schema.TableSchemaBuilder;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +18,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,7 +57,7 @@ class ConfigurationBeforeUpgrade extends MockConfiguration {
 
     @Override
     public String getDatabaseName() {
-        return "mock_for_migration";
+        return super.getDatabaseName() + "_for_migration";
     }
     
     @Override
@@ -70,24 +71,23 @@ class ConfigurationAfterUpgrade extends ConfigurationBeforeUpgrade {
 
     @Override
     public int getDatabaseVersion() {
-        return 2;
+        return super.getDatabaseVersion() + 1;
     }
 
     @Override
-    public List<Table> getDatabaseTables() {
-        return Arrays.<Table>asList(new MockTableForUpgrade());
+    public List<TableDefinition> getDatabaseTables() {
+        return Arrays.<TableDefinition>asList(new MockTableDefinitionForUpgrade());
     }
 
 }
 
-class MockTableForUpgrade extends MockTable {
-    
+class MockTableDefinitionForUpgrade extends MockTableDefinition {
+   
     @Override
-    public List<TableField> getTableFields() {
-        List<TableField> fields = new ArrayList<>();
-        fields.addAll(super.getTableFields());
-        fields.add(new NewField());
-        return fields;
+    public TableSchema getTableSchema() {
+        return new TableSchemaBuilder(super.getTableSchema())
+                .field(new NewField())
+                .build();
     }
     
 }

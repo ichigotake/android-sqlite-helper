@@ -6,7 +6,7 @@ import junit.framework.Assert;
 
 import net.ichigotake.sqlitehelper.DatabaseHelper;
 import net.ichigotake.sqlitehelper.MockConfiguration;
-import net.ichigotake.sqlitehelper.MockTable;
+import net.ichigotake.sqlitehelper.MockTableDefinition;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,15 +16,16 @@ import org.robolectric.annotation.Config;
 
 @Config(emulateSdk = 18)
 @RunWith(RobolectricTestRunner.class)
-public class AlterTableTest {
+public class AlterTableDefinitionTest {
     
     @Test
     public void testBuildQuery() {
         SQLiteDatabase database = new DatabaseHelper(Robolectric.application, new MockConfiguration())
                 .getWritableDatabase();
-        AlterTable alterTable = new AlterTable(database, new MockTable());
+        MockTableDefinition mock = new MockTableDefinition();
+        AlterTable alterTable = new AlterTable(database);
         String expected = "ALTER TABLE mock ADD COLUMN category_id INTEGER";
-        Assert.assertEquals(expected, alterTable.buildQuery(MockTable.Field.CATEGORY_ID));
+        Assert.assertEquals(expected, alterTable.buildQuery(mock.getTableName(), MockTableDefinition.Field.CATEGORY_ID));
     }
     
 }

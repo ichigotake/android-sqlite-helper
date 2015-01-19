@@ -2,7 +2,7 @@ package net.ichigotake.sqlitehelper.ddl;
 
 import junit.framework.Assert;
 
-import net.ichigotake.sqlitehelper.MockTable;
+import net.ichigotake.sqlitehelper.MockTableDefinition;
 import net.ichigotake.sqlitehelper.schema.Index;
 import net.ichigotake.sqlitehelper.schema.TableField;
 
@@ -19,10 +19,10 @@ public class CreateIndexTest {
     
     @Test
     public void testClause() {
-        MockTable mock = new MockTable();
+        MockTableDefinition mock = new MockTableDefinition();
         CreateIndex createIndex = new CreateIndex(null, mock.getTableSchema());
         {
-            Index sample = new Index(mock.getTableName(), Arrays.<TableField>asList(MockTable.Field.ID));
+            Index sample = new Index(mock.getTableName(), Arrays.<TableField>asList(MockTableDefinition.Field.ID));
             String query = createIndex.buildCreateIndexClause(sample);
             String expected = "CREATE INDEX IF NOT EXISTS mock__id ON mock(_id)";
             Assert.assertEquals(expected, query);
@@ -30,7 +30,7 @@ public class CreateIndexTest {
         {
             Index sample = new Index(
                     mock.getTableName(),
-                    Arrays.<TableField>asList(MockTable.Field.ITEM_TYPE, MockTable.Field.ITEM_NAME)
+                    Arrays.<TableField>asList(MockTableDefinition.Field.ITEM_TYPE, MockTableDefinition.Field.ITEM_NAME)
                     );
             String query = createIndex.buildCreateIndexClause(sample);
             String expected = "CREATE INDEX IF NOT EXISTS mock_item_type_and_item_name" +

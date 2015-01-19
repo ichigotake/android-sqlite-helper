@@ -4,7 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import net.ichigotake.sqlitehelper.schema.Table;
+import net.ichigotake.sqlitehelper.schema.TableDefinition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +12,17 @@ import java.util.List;
 public class Select {
 
     private final SQLiteDatabase database;
-    private final Table table;
+    private final String tableName;
     private final Where where;
     private final List<String> orderBy;
 
-    public Select(SQLiteDatabase database, Table from) {
+    public Select(SQLiteDatabase database, TableDefinition from) {
+        this(database, from.getTableName());
+    }
+
+    public Select(SQLiteDatabase database, String from) {
         this.database = database;
-        this.table = from;
+        this.tableName = from;
         this.where = new Where();
         this.orderBy = new ArrayList<>();
     }
@@ -42,7 +46,7 @@ public class Select {
 
     /** visible for testing */
     String buildQuery() {
-        String query = "SELECT * FROM " + table.getTableName();
+        String query = "SELECT * FROM " + tableName;
         if (!where.isEmpty()) {
             query += " WHERE " + where.getQuery();
         }

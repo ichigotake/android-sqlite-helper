@@ -4,33 +4,31 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import net.ichigotake.sqlitehelper.dml.Select;
-import net.ichigotake.sqlitehelper.schema.Table;
+import net.ichigotake.sqlitehelper.schema.TableDefinition;
 import net.ichigotake.sqlitehelper.schema.TableField;
 
 public class AlterTable {
 
     private final SQLiteDatabase database;
-    private final Table<?> table;
 
-    public AlterTable(SQLiteDatabase database, Table<?> table) {
+    public AlterTable(SQLiteDatabase database) {
         this.database = database;
-        this.table = table;
     }
     
-    public void addColumn() {
-        for (TableField field : table.getTableFields()) {
-            Cursor cursor = new Select(database, table).execute();
+    public void addColumnIfNotExists(TableDefinition tableDefinition) {
+        for (TableField field : tableDefinition.getTableSchema().getFields()) {
+            Cursor cursor = new Select(database, tableDefinition).execute();
             boolean fieldExists = cursor.getColumnIndex(field.getFieldName()) >= 0;
             if (fieldExists) {
                 continue;
             }
-            database.execSQL(buildQuery(field));
+            database.execSQL(buildQuery(tableDefinition.getTableName(), field));
         }
     }
 
     /* visible for testing */
-    String buildQuery(TableField field) {
-        return "ALTER TABLE " + table.getTableName() + " ADD COLUMN " +
+    String buildQuery(String tableName, TableField field) {
+        return "ALTER TABLE " + tableName + " ADD COLUMN " +
                 field.getFieldName() + " " + field.getFieldType().getReservedName();
     }
 }

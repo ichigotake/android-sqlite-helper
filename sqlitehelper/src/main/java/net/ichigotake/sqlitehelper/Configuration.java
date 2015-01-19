@@ -1,12 +1,12 @@
 package net.ichigotake.sqlitehelper;
 
-import net.ichigotake.sqlitehelper.schema.Table;
+import net.ichigotake.sqlitehelper.schema.TableDefinition;
 
 import java.util.List;
 
 public interface Configuration {
     
-    List<Table> getDatabaseTables();
+    List<TableDefinition> getDatabaseTables();
     
     int getDatabaseVersion();
     

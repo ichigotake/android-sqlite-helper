@@ -7,9 +7,9 @@ import junit.framework.Assert;
 
 import net.ichigotake.sqlitehelper.DatabaseHelper;
 import net.ichigotake.sqlitehelper.MockConfiguration;
-import net.ichigotake.sqlitehelper.MockTable;
+import net.ichigotake.sqlitehelper.MockTableDefinition;
 import net.ichigotake.sqlitehelper.schema.Index;
-import net.ichigotake.sqlitehelper.schema.Table;
+import net.ichigotake.sqlitehelper.schema.TableDefinition;
 import net.ichigotake.sqlitehelper.schema.TableSchema;
 import net.ichigotake.sqlitehelper.schema.UniqueField;
 
@@ -21,10 +21,10 @@ import org.robolectric.annotation.Config;
 
 @Config(emulateSdk = 18)
 @RunWith(RobolectricTestRunner.class)
-public class CreateTableTest {
+public class CreateTableDefinitionTest {
     
-    private Table mock() {
-        return new MockTableForCreateTable();
+    private TableDefinition mock() {
+        return new MockTableForCreateTableDefinition();
     }
     
     private DatabaseHelper sqliteHelper() {
@@ -53,7 +53,7 @@ public class CreateTableTest {
         DatabaseHelper sqlite = sqliteHelper();
         CreateTable createTable = new CreateTable(
                 sqlite.getReadableDatabase(), mock().getTableSchema());
-        UniqueField sample = new UniqueField(MockTable.Field.CATEGORY_ID);
+        UniqueField sample = new UniqueField(MockTableDefinition.Field.CATEGORY_ID);
         Assert.assertEquals("UNIQUE (category_id)", createTable.buildQueryAsUnique(sample));
     }
     
@@ -109,7 +109,7 @@ public class CreateTableTest {
 
 }
 
-class MockTableForCreateTable extends MockTable {
+class MockTableForCreateTableDefinition extends MockTableDefinition {
     
     @Override
     public String getTableName() {
