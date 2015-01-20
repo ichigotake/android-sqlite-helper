@@ -28,7 +28,7 @@ If you may need rich interfaces, I recommends to use other library.
 - [x] ~~Introduce CI (circleci or travis-ci or wrecker?)~~
 - [ ] Writing document
 - [ ] Create sample application
-- [ ] Shipt to jcenter
+- [ ] Shipt to MavenCentral
 
 ## For contributors
 
