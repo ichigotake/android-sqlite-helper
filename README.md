@@ -14,9 +14,9 @@ Currently status is making a draft.
 
 This is very simple `SQLiteOpenHelper` wrapper for lightweight application.
 
-Don't use reflection, annotation processor, and other magics.
+Don't use reflection, annotation processor, no proguard configuration.
 
-If you may need rich interfaces, I recommends to use other library.
+If you may need rich interfaces, we recommends to use other library.
 
 ## Todo
 
