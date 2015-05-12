@@ -1,26 +1,29 @@
 package net.ichigotake.sqlitehelper.ddl;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import junit.framework.Assert;
 
+import net.ichigotake.sqlitehelper.BuildConfig;
 import net.ichigotake.sqlitehelper.DatabaseHelper;
 import net.ichigotake.sqlitehelper.MockConfiguration;
 import net.ichigotake.sqlitehelper.MockTableDefinition;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.shadows.ShadowApplication;
 
-@Config(emulateSdk = 18)
-@RunWith(RobolectricTestRunner.class)
+@Config(constants = BuildConfig.class, emulateSdk = 21)
+@RunWith(RobolectricGradleTestRunner.class)
 public class AlterTableDefinitionTest {
     
     @Test
     public void testBuildQuery() {
-        SQLiteDatabase database = new DatabaseHelper(Robolectric.application, new MockConfiguration())
+        Context context = ShadowApplication.getInstance().getApplicationContext();
+        SQLiteDatabase database = new DatabaseHelper(context, new MockConfiguration())
                 .getWritableDatabase();
         MockTableDefinition mock = new MockTableDefinition();
         AlterTable alterTable = new AlterTable(database);

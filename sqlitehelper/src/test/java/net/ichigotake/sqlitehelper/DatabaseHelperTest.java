@@ -1,5 +1,6 @@
 package net.ichigotake.sqlitehelper;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -14,27 +15,28 @@ import net.ichigotake.sqlitehelper.schema.TableSchemaBuilder;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.shadows.ShadowApplication;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Config(emulateSdk = 18)
-@RunWith(RobolectricTestRunner.class)
+@Config(constants = BuildConfig.class, emulateSdk = 21)
+@RunWith(RobolectricGradleTestRunner.class)
 public class DatabaseHelperTest {
 
     @Test
     public void testInitializer() {
-        new DatabaseHelper(Robolectric.application, new MockConfiguration());
+        new DatabaseHelper(ShadowApplication.getInstance().getApplicationContext(), new MockConfiguration());
     }
     
     @Test
     public void testMigrate() {
+        Context context = ShadowApplication.getInstance().getApplicationContext();
         {
             Configuration configuration = new ConfigurationBeforeUpgrade();
-            SQLiteDatabase database = new DatabaseHelper(Robolectric.application, configuration)
+            SQLiteDatabase database = new DatabaseHelper(context, configuration)
                     .getWritableDatabase();
             Cursor cursor = database.rawQuery("SELECT * FROM mock", new String[]{});
             Assert.assertTrue("Before migrate", cursor.getColumnIndex(NewField.fieldName) == -1);
@@ -42,9 +44,9 @@ public class DatabaseHelperTest {
         {
             Configuration configuration = new ConfigurationAfterUpgrade();
             // exec migration
-            new DatabaseHelper(Robolectric.application, configuration).getWritableDatabase();
+            new DatabaseHelper(context, configuration).getWritableDatabase();
             
-            Cursor cursor = new DatabaseHelper(Robolectric.application, configuration)
+            Cursor cursor = new DatabaseHelper(context, configuration)
                     .getReadableDatabase()
                     .rawQuery("SELECT * FROM mock", new String[]{});
             Assert.assertTrue("After migrate", cursor.getColumnIndex(NewField.fieldName) >= 0);

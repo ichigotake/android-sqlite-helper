@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteException;
 
 import junit.framework.Assert;
 
+import net.ichigotake.sqlitehelper.BuildConfig;
 import net.ichigotake.sqlitehelper.DatabaseHelper;
 import net.ichigotake.sqlitehelper.MockConfiguration;
 import net.ichigotake.sqlitehelper.MockTableDefinition;
@@ -15,12 +16,12 @@ import net.ichigotake.sqlitehelper.schema.UniqueField;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.shadows.ShadowApplication;
 
-@Config(emulateSdk = 18)
-@RunWith(RobolectricTestRunner.class)
+@Config(constants = BuildConfig.class, emulateSdk = 21)
+@RunWith(RobolectricGradleTestRunner.class)
 public class CreateTableDefinitionTest {
     
     private TableDefinition mock() {
@@ -28,7 +29,7 @@ public class CreateTableDefinitionTest {
     }
     
     private DatabaseHelper sqliteHelper() {
-        return new DatabaseHelper(Robolectric.application, new MockConfiguration());
+        return new DatabaseHelper(ShadowApplication.getInstance().getApplicationContext(), new MockConfiguration());
     }
     
     @Test

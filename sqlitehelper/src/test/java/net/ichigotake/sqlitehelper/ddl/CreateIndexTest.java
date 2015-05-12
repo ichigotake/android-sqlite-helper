@@ -2,19 +2,20 @@ package net.ichigotake.sqlitehelper.ddl;
 
 import junit.framework.Assert;
 
+import net.ichigotake.sqlitehelper.BuildConfig;
 import net.ichigotake.sqlitehelper.MockTableDefinition;
 import net.ichigotake.sqlitehelper.schema.Index;
 import net.ichigotake.sqlitehelper.schema.TableField;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.Arrays;
 
-@Config(emulateSdk = 18)
-@RunWith(RobolectricTestRunner.class)
+@Config(constants = BuildConfig.class, emulateSdk = 21)
+@RunWith(RobolectricGradleTestRunner.class)
 public class CreateIndexTest {
     
     @Test
