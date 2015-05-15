@@ -1,5 +1,7 @@
-# sqlite-helper [![Build Status](https://travis-ci.org/ichigotake/android-sqlite-helper.svg)](https://travis-ci.org/ichigotake/android-sqlite-helper)
+# sqlite-helper
 
+[![Build Status](https://travis-ci.org/ichigotake/android-sqlite-helper.svg)](https://travis-ci.org/ichigotake/android-sqlite-helper) 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.ichigotake/android-sqlite-helper/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.ichigotake/android-sqlite-helper) 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ichigotake/android-sqlite-helper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 sqlite-wrapper - [DRAFT] very simple SQLite helpers for AndroidSDK
@@ -28,7 +30,7 @@ If you may need rich interfaces, we recommends to use other library.
 - [x] ~~Introduce CI (circleci or travis-ci or wrecker?)~~
 - [ ] Writing document
 - [ ] Create sample application
-- [ ] Shipt to MavenCentral
+- [x] ~~Shipt to MavenCentral~~
 
 ## For contributors
 
