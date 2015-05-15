@@ -1,6 +1,6 @@
 # sqlite-helper
 
-[![Build Status](https://travis-ci.org/ichigotake/android-sqlite-helper.svg)](https://travis-ci.org/ichigotake/android-sqlite-helper) 
+[![Circle CI](https://circleci.com/gh/ichigotake/android-sqlite-helper.svg?style=svg)](https://circleci.com/gh/ichigotake/android-sqlite-helper)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.ichigotake/android-sqlite-helper/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.ichigotake/android-sqlite-helper) 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ichigotake/android-sqlite-helper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
