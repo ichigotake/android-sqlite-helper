@@ -10,3 +10,7 @@ test:
   override:
       - ./gradlew testDebug lint
 
+general:
+  artifacts:
+    - sqlitehelper/build/reports/tests/debug/
+
