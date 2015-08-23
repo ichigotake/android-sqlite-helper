@@ -1,5 +1,7 @@
 package net.ichigotake.sqlitehelper.schema;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,13 +13,13 @@ public class TableSchemaBuilder {
     private final List<Index> indexes;
     private final List<UniqueField> uniqueFields;
 
-    public TableSchemaBuilder(String tableName) {
+    public TableSchemaBuilder(@NonNull String tableName) {
         this.tableName = tableName;
         this.fields = new ArrayList<>();
         this.indexes = new ArrayList<>();
         this.uniqueFields = new ArrayList<>();
     }
-    public TableSchemaBuilder(TableSchema schema) {
+    public TableSchemaBuilder(@NonNull TableSchema schema) {
         this.tableName = schema.getTableName();
         this.fields = schema.getFields();
         this.indexes = schema.getIndexes();
@@ -25,15 +27,18 @@ public class TableSchemaBuilder {
     }
 
 
+    @NonNull
     public TableSchema build() {
         return new TableSchema(tableName, fields, indexes, uniqueFields);
     }
 
-    public TableSchemaBuilder field(TableField... fields) {
+    @NonNull
+    public TableSchemaBuilder field(@NonNull TableField... fields) {
         return field(Arrays.asList(fields));
     }
 
-    public TableSchemaBuilder field(List<TableField> fields) {
+    @NonNull
+    public TableSchemaBuilder field(@NonNull List<TableField> fields) {
         for (TableField field : fields) {
             this.fields.add(field);
             if (field.getFieldAttributes().contains(TableFieldAttribute.UNIQUE)) {
@@ -43,15 +48,17 @@ public class TableSchemaBuilder {
         return this;
     }
 
-    public TableSchemaBuilder index(TableField field, TableField... pair) {
+    @NonNull
+    public TableSchemaBuilder index(@NonNull TableField field, @NonNull TableField... pair) {
         List<TableField> targets = new ArrayList<>();
         targets.add(field);
         targets.addAll(Arrays.asList(pair));
         indexes.add(new Index(tableName, targets));
         return this;
     }
-    
-    public TableSchemaBuilder unique(TableField field, TableField... pair) {
+
+    @NonNull
+    public TableSchemaBuilder unique(@NonNull TableField field, @NonNull TableField... pair) {
         uniqueFields.add(new UniqueField(field, pair));
         return this;
     }

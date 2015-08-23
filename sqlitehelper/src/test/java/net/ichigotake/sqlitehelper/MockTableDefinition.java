@@ -1,5 +1,7 @@
 package net.ichigotake.sqlitehelper;
 
+import android.support.annotation.NonNull;
+
 import net.ichigotake.sqlitehelper.schema.TableFieldAttribute;
 import net.ichigotake.sqlitehelper.schema.DatabaseTable;
 import net.ichigotake.sqlitehelper.schema.TableSchema;
@@ -37,16 +39,19 @@ public class MockTableDefinition implements DatabaseTable {
             this.attributes = Arrays.asList(attributesArray);
         }
 
+        @NonNull
         @Override
         public String getFieldName() {
             return fieldName;
         }
 
+        @NonNull
         @Override
         public TableFieldType getFieldType() {
             return fieldType;
         }
         
+        @NonNull
         @Override
         public List<TableFieldAttribute> getFieldAttributes() {
             return attributes;
@@ -59,6 +64,7 @@ public class MockTableDefinition implements DatabaseTable {
         return 1;
     }
 
+    @NonNull
     @Override
     public TableSchema getTableSchema() {
         return new TableSchemaBuilder(getTableName())
@@ -68,6 +74,7 @@ public class MockTableDefinition implements DatabaseTable {
                 .build();
     }
 
+    @NonNull
     @Override
     public String getTableName() {
         return "mock";

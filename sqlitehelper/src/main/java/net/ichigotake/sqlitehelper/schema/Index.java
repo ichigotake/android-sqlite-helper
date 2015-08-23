@@ -1,5 +1,7 @@
 package net.ichigotake.sqlitehelper.schema;
 
+import android.support.annotation.NonNull;
+
 import java.util.List;
 
 public class Index {
@@ -12,10 +14,12 @@ public class Index {
         this.fields = fields;
     }
 
+    @NonNull
     public String getTableName() {
         return tableName;
     }
 
+    @NonNull
     public List<TableField> getFields() {
         return fields;
     }

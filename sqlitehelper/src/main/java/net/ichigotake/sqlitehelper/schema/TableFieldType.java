@@ -1,5 +1,7 @@
 package net.ichigotake.sqlitehelper.schema;
 
+import android.support.annotation.NonNull;
+
 public enum TableFieldType {
 
     TEXT("TEXT"),
@@ -9,10 +11,11 @@ public enum TableFieldType {
     
     private final String reservedName;
     
-    private TableFieldType(String reservedName) {
+    TableFieldType(String reservedName) {
         this.reservedName = reservedName;
     }
-    
+
+    @NonNull
     public String getReservedName() {
         return reservedName;
         
