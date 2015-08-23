@@ -2,6 +2,7 @@ package net.ichigotake.sqlitehelper.ddl;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 
 import junit.framework.Assert;
 
@@ -16,7 +17,7 @@ import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowApplication;
 
-@Config(constants = BuildConfig.class, emulateSdk = 21)
+@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.KITKAT)
 @RunWith(RobolectricGradleTestRunner.class)
 public class AlterTableDefinitionTest {
     

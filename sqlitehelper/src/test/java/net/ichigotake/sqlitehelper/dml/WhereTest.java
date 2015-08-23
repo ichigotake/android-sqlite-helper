@@ -1,16 +1,18 @@
 package net.ichigotake.sqlitehelper.dml;
 
+import android.os.Build;
+
 import junit.framework.Assert;
 
 import net.ichigotake.sqlitehelper.BuildConfig;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-@Config(constants = BuildConfig.class, emulateSdk = 21)
-@RunWith(RobolectricTestRunner.class)
+@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.KITKAT)
+@RunWith(RobolectricGradleTestRunner.class)
 public class WhereTest {
 
     @Test

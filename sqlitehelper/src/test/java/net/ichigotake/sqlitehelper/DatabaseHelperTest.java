@@ -3,6 +3,7 @@ package net.ichigotake.sqlitehelper;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 
 import junit.framework.Assert;
 
@@ -15,15 +16,15 @@ import net.ichigotake.sqlitehelper.schema.TableSchemaBuilder;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowApplication;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-@Config(constants = BuildConfig.class, emulateSdk = 21)
-@RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.KITKAT)
+@RunWith(RobolectricTestRunner.class)
 public class DatabaseHelperTest {
 
     @Test
@@ -40,6 +41,7 @@ public class DatabaseHelperTest {
                     .getWritableDatabase();
             Cursor cursor = database.rawQuery("SELECT * FROM mock", new String[]{});
             Assert.assertTrue("Before migrate", cursor.getColumnIndex(NewField.fieldName) == -1);
+            cursor.close();
         }
         {
             Configuration configuration = new ConfigurationAfterUpgrade();
@@ -50,6 +52,7 @@ public class DatabaseHelperTest {
                     .getReadableDatabase()
                     .rawQuery("SELECT * FROM mock", new String[]{});
             Assert.assertTrue("After migrate", cursor.getColumnIndex(NewField.fieldName) >= 0);
+            cursor.close();
         }
     }
     
@@ -78,7 +81,7 @@ class ConfigurationAfterUpgrade extends ConfigurationBeforeUpgrade {
 
     @Override
     public List<TableDefinition> getDatabaseTables() {
-        return Arrays.<TableDefinition>asList(new MockTableDefinitionForUpgrade());
+        return Collections.<TableDefinition>singletonList(new MockTableDefinitionForUpgrade());
     }
 
 }

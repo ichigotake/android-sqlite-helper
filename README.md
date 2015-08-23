@@ -35,4 +35,4 @@ If you may need rich interfaces, we recommends to use other library.
 ## For contributors
 
 - Development with AndroidStudio 1.0.0 or higher
-- Run unit test with `testDebug` task
+- Run unit test with `testDebugUnitTest` task
