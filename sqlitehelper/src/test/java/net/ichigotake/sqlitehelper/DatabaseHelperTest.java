@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
+import android.support.annotation.NonNull;
 
 import junit.framework.Assert;
 
@@ -60,6 +61,7 @@ public class DatabaseHelperTest {
 
 class ConfigurationBeforeUpgrade extends MockConfiguration {
 
+    @NonNull
     @Override
     public String getDatabaseName() {
         return super.getDatabaseName() + "_for_migration";
@@ -79,6 +81,7 @@ class ConfigurationAfterUpgrade extends ConfigurationBeforeUpgrade {
         return super.getDatabaseVersion() + 1;
     }
 
+    @NonNull
     @Override
     public List<DatabaseTable> getDatabaseTables() {
         return Collections.<DatabaseTable>singletonList(new MockTableDefinitionForUpgrade());
