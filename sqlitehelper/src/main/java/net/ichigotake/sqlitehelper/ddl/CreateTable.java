@@ -3,7 +3,7 @@ package net.ichigotake.sqlitehelper.ddl;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import net.ichigotake.sqlitehelper.schema.FieldAttribute;
+import net.ichigotake.sqlitehelper.schema.TableFieldAttribute;
 import net.ichigotake.sqlitehelper.schema.TableField;
 import net.ichigotake.sqlitehelper.schema.TableSchema;
 import net.ichigotake.sqlitehelper.schema.UniqueField;
@@ -31,7 +31,7 @@ public class CreateTable {
         List<String> list = new ArrayList<>();
         for (TableField field : schema.getFields()) {
             String query = field.getFieldName() + " " + field.getFieldType().getReservedName();
-            if (field.getAttributes().contains(FieldAttribute.PRIMARY_KEY)) {
+            if (field.getFieldAttributes().contains(TableFieldAttribute.PRIMARY_KEY)) {
                 query += " PRIMARY KEY";
             }
             list.add(query);

@@ -1,15 +1,15 @@
 package net.ichigotake.sqlitehelper;
 
-import net.ichigotake.sqlitehelper.schema.TableDefinition;
+import net.ichigotake.sqlitehelper.schema.DatabaseTable;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class MockConfiguration implements Configuration {
+public class MockConfiguration implements DatabaseConfiguration {
     
     @Override
-    public List<TableDefinition> getDatabaseTables() {
-        return Arrays.<TableDefinition>asList(
+    public List<DatabaseTable> getDatabaseTables() {
+        return Arrays.<DatabaseTable>asList(
                 new MockTableDefinition()
         );
     }

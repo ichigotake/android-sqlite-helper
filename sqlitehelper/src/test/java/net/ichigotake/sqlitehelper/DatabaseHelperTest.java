@@ -7,8 +7,8 @@ import android.os.Build;
 
 import junit.framework.Assert;
 
-import net.ichigotake.sqlitehelper.schema.FieldAttribute;
-import net.ichigotake.sqlitehelper.schema.TableDefinition;
+import net.ichigotake.sqlitehelper.schema.TableFieldAttribute;
+import net.ichigotake.sqlitehelper.schema.DatabaseTable;
 import net.ichigotake.sqlitehelper.schema.TableField;
 import net.ichigotake.sqlitehelper.schema.TableFieldType;
 import net.ichigotake.sqlitehelper.schema.TableSchema;
@@ -36,7 +36,7 @@ public class DatabaseHelperTest {
     public void testMigrate() {
         Context context = ShadowApplication.getInstance().getApplicationContext();
         {
-            Configuration configuration = new ConfigurationBeforeUpgrade();
+            DatabaseConfiguration configuration = new ConfigurationBeforeUpgrade();
             SQLiteDatabase database = new DatabaseHelper(context, configuration)
                     .getWritableDatabase();
             Cursor cursor = database.rawQuery("SELECT * FROM mock", new String[]{});
@@ -44,7 +44,7 @@ public class DatabaseHelperTest {
             cursor.close();
         }
         {
-            Configuration configuration = new ConfigurationAfterUpgrade();
+            DatabaseConfiguration configuration = new ConfigurationAfterUpgrade();
             // exec migration
             new DatabaseHelper(context, configuration).getWritableDatabase();
             
@@ -80,8 +80,8 @@ class ConfigurationAfterUpgrade extends ConfigurationBeforeUpgrade {
     }
 
     @Override
-    public List<TableDefinition> getDatabaseTables() {
-        return Collections.<TableDefinition>singletonList(new MockTableDefinitionForUpgrade());
+    public List<DatabaseTable> getDatabaseTables() {
+        return Collections.<DatabaseTable>singletonList(new MockTableDefinitionForUpgrade());
     }
 
 }
@@ -112,7 +112,7 @@ class NewField implements TableField {
     }
 
     @Override
-    public List<FieldAttribute> getAttributes() {
-        return FieldAttribute.NONE();
+    public List<TableFieldAttribute> getFieldAttributes() {
+        return TableFieldAttribute.NONE();
     }
 }
