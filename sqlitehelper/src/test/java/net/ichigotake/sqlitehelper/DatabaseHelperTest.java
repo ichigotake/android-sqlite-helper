@@ -41,6 +41,7 @@ public class DatabaseHelperTest {
                     .getWritableDatabase();
             Cursor cursor = database.rawQuery("SELECT * FROM mock", new String[]{});
             Assert.assertTrue("Before migrate", cursor.getColumnIndex(NewField.fieldName) == -1);
+            cursor.close();
         }
         {
             Configuration configuration = new ConfigurationAfterUpgrade();
@@ -51,6 +52,7 @@ public class DatabaseHelperTest {
                     .getReadableDatabase()
                     .rawQuery("SELECT * FROM mock", new String[]{});
             Assert.assertTrue("After migrate", cursor.getColumnIndex(NewField.fieldName) >= 0);
+            cursor.close();
         }
     }
     
@@ -79,7 +81,7 @@ class ConfigurationAfterUpgrade extends ConfigurationBeforeUpgrade {
 
     @Override
     public List<TableDefinition> getDatabaseTables() {
-        return Arrays.<TableDefinition>asList(new MockTableDefinitionForUpgrade());
+        return Collections.<TableDefinition>singletonList(new MockTableDefinitionForUpgrade());
     }
 
 }
