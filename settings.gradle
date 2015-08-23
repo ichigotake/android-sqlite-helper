@@ -1,1 +1,1 @@
-include ':sqlitehelper'
+include ':sqlitehelper', ':sqlitehelper-sample'
