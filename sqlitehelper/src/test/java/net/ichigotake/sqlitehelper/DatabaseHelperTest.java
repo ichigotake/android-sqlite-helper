@@ -3,6 +3,7 @@ package net.ichigotake.sqlitehelper;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 
 import junit.framework.Assert;
 
@@ -15,15 +16,15 @@ import net.ichigotake.sqlitehelper.schema.TableSchemaBuilder;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowApplication;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-@Config(constants = BuildConfig.class, emulateSdk = 21)
-@RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.KITKAT)
+@RunWith(RobolectricTestRunner.class)
 public class DatabaseHelperTest {
 
     @Test

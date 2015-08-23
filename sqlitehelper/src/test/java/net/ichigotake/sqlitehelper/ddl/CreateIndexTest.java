@@ -1,5 +1,7 @@
 package net.ichigotake.sqlitehelper.ddl;
 
+import android.os.Build;
+
 import junit.framework.Assert;
 
 import net.ichigotake.sqlitehelper.BuildConfig;
@@ -13,8 +15,9 @@ import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.Arrays;
+import java.util.Collections;
 
-@Config(constants = BuildConfig.class, emulateSdk = 21)
+@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.KITKAT)
 @RunWith(RobolectricGradleTestRunner.class)
 public class CreateIndexTest {
     
