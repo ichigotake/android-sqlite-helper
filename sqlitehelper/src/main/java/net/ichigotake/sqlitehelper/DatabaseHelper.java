@@ -6,24 +6,24 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     
-    private final Configuration configuration;
+    private final DatabaseConfiguration configuration;
 
-    public DatabaseHelper(Context context, Configuration configuration) {
+    public DatabaseHelper(Context context, DatabaseConfiguration configuration) {
         super(context, configuration.getDatabaseName(), null, configuration.getDatabaseVersion());
         this.configuration = configuration;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-		new MigrationHelper().onCreate(db, configuration);
+		new DatabaseMigrationHelper().onCreate(db, configuration);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        new MigrationHelper().onUpgrade(db, oldVersion, newVersion, configuration);
+        new DatabaseMigrationHelper().onUpgrade(db, oldVersion, newVersion, configuration);
     }
 
-    public Configuration getConfiguration() {
+    public DatabaseConfiguration getConfiguration() {
         return configuration;
     }
 

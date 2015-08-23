@@ -36,7 +36,7 @@ public class TableSchemaBuilder {
     public TableSchemaBuilder field(List<TableField> fields) {
         for (TableField field : fields) {
             this.fields.add(field);
-            if (field.getAttributes().contains(FieldAttribute.UNIQUE)) {
+            if (field.getFieldAttributes().contains(TableFieldAttribute.UNIQUE)) {
                 unique(field);
             }
         }

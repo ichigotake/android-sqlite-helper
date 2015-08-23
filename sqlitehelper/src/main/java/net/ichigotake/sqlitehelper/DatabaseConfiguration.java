@@ -3,14 +3,14 @@ package net.ichigotake.sqlitehelper;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 
-import net.ichigotake.sqlitehelper.schema.TableDefinition;
+import net.ichigotake.sqlitehelper.schema.DatabaseTable;
 
 import java.util.List;
 
-public interface Configuration {
+public interface DatabaseConfiguration {
 
     @NonNull
-    List<TableDefinition> getDatabaseTables();
+    List<DatabaseTable> getDatabaseTables();
 
     @IntRange(from = 0, to = Integer.MAX_VALUE)
     int getDatabaseVersion();
