@@ -12,7 +12,7 @@ public interface DatabaseConfiguration {
     @NonNull
     List<DatabaseTable> getDatabaseTables();
 
-    @IntRange(from = 0, to = Integer.MAX_VALUE)
+    @IntRange(from = 1, to = Integer.MAX_VALUE)
     int getDatabaseVersion();
 
     @NonNull

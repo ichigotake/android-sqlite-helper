@@ -91,6 +91,7 @@ class ConfigurationAfterUpgrade extends ConfigurationBeforeUpgrade {
 
 class MockTableDefinitionForUpgrade extends MockTableDefinition {
    
+    @NonNull
     @Override
     public TableSchema getTableSchema() {
         return new TableSchemaBuilder(super.getTableSchema())
@@ -104,16 +105,19 @@ class NewField implements TableField {
     
     static String fieldName = "new_field";
 
+    @NonNull
     @Override
     public String getFieldName() {
         return fieldName;
     }
 
+    @NonNull
     @Override
     public TableFieldType getFieldType() {
         return TableFieldType.INTEGER;
     }
 
+    @NonNull
     @Override
     public List<TableFieldAttribute> getFieldAttributes() {
         return TableFieldAttribute.NONE();

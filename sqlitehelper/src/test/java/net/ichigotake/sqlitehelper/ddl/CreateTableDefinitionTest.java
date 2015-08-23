@@ -3,6 +3,7 @@ package net.ichigotake.sqlitehelper.ddl;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Build;
+import android.support.annotation.NonNull;
 
 import junit.framework.Assert;
 
@@ -113,6 +114,7 @@ public class CreateTableDefinitionTest {
 
 class MockTableForCreateTableDefinition extends MockTableDefinition {
     
+    @NonNull
     @Override
     public String getTableName() {
         return "mock_for_create_table";
