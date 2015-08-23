@@ -9,14 +9,14 @@ import net.ichigotake.sqlitehelper.schema.DatabaseTable;
 
 public class DatabaseMigrationHelper {
 
-    public void onCreate(SQLiteDatabase db, Configuration configuration) {
+    public void onCreate(SQLiteDatabase db, DatabaseConfiguration configuration) {
         for (DatabaseTable databaseTable : configuration.getDatabaseTables()) {
             new CreateTable(db, databaseTable.getTableSchema()).createTableIfNotExists();
         }
         configuration.getMigrationCallback().onAfterCreate(db, configuration);
     }
 
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion, Configuration configuration) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion, DatabaseConfiguration configuration) {
         AlterTable alterTable = new AlterTable(db);
         for (DatabaseTable databaseTable : configuration.getDatabaseTables()) {
             if (oldVersion <= databaseTable.getCreatedVersion() && databaseTable.getCreatedVersion() <= newVersion) {

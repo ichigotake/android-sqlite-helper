@@ -6,9 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     
-    private final Configuration configuration;
+    private final DatabaseConfiguration configuration;
 
-    public DatabaseHelper(Context context, Configuration configuration) {
+    public DatabaseHelper(Context context, DatabaseConfiguration configuration) {
         super(context, configuration.getDatabaseName(), null, configuration.getDatabaseVersion());
         this.configuration = configuration;
     }
@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         new DatabaseMigrationHelper().onUpgrade(db, oldVersion, newVersion, configuration);
     }
 
-    public Configuration getConfiguration() {
+    public DatabaseConfiguration getConfiguration() {
         return configuration;
     }
 

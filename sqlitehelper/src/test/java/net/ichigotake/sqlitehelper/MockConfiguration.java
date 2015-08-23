@@ -5,7 +5,7 @@ import net.ichigotake.sqlitehelper.schema.DatabaseTable;
 import java.util.Arrays;
 import java.util.List;
 
-public class MockConfiguration implements Configuration {
+public class MockConfiguration implements DatabaseConfiguration {
     
     @Override
     public List<DatabaseTable> getDatabaseTables() {

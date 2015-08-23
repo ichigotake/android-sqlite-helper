@@ -8,6 +8,6 @@ public interface TableField {
 
     TableFieldType getFieldType();
 
-    List<FieldAttribute> getAttributes();
+    List<TableFieldAttribute> getFieldAttributes();
 
 }

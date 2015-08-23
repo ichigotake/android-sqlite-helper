@@ -1,6 +1,6 @@
 package net.ichigotake.sqlitehelper;
 
-import net.ichigotake.sqlitehelper.schema.FieldAttribute;
+import net.ichigotake.sqlitehelper.schema.TableFieldAttribute;
 import net.ichigotake.sqlitehelper.schema.DatabaseTable;
 import net.ichigotake.sqlitehelper.schema.TableSchema;
 import net.ichigotake.sqlitehelper.schema.TableSchemaBuilder;
@@ -10,8 +10,8 @@ import net.ichigotake.sqlitehelper.schema.TableFieldType;
 import java.util.Arrays;
 import java.util.List;
 
-import static net.ichigotake.sqlitehelper.schema.FieldAttribute.PRIMARY_KEY;
-import static net.ichigotake.sqlitehelper.schema.FieldAttribute.UNIQUE;
+import static net.ichigotake.sqlitehelper.schema.TableFieldAttribute.PRIMARY_KEY;
+import static net.ichigotake.sqlitehelper.schema.TableFieldAttribute.UNIQUE;
 import static net.ichigotake.sqlitehelper.schema.TableFieldType.INTEGER;
 import static net.ichigotake.sqlitehelper.schema.TableFieldType.LONG;
 import static net.ichigotake.sqlitehelper.schema.TableFieldType.TEXT;
@@ -29,9 +29,9 @@ public class MockTableDefinition implements DatabaseTable {
 
         private final String fieldName;
         private final TableFieldType fieldType;
-        private final List<FieldAttribute> attributes;
+        private final List<TableFieldAttribute> attributes;
 
-        Field(String fieldName, TableFieldType fieldType, FieldAttribute... attributesArray) {
+        Field(String fieldName, TableFieldType fieldType, TableFieldAttribute... attributesArray) {
             this.fieldName = fieldName;
             this.fieldType = fieldType;
             this.attributes = Arrays.asList(attributesArray);
@@ -48,7 +48,7 @@ public class MockTableDefinition implements DatabaseTable {
         }
         
         @Override
-        public List<FieldAttribute> getAttributes() {
+        public List<TableFieldAttribute> getFieldAttributes() {
             return attributes;
         }
 

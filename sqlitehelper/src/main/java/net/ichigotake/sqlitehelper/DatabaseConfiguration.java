@@ -4,7 +4,7 @@ import net.ichigotake.sqlitehelper.schema.DatabaseTable;
 
 import java.util.List;
 
-public interface Configuration {
+public interface DatabaseConfiguration {
     
     List<DatabaseTable> getDatabaseTables();
     
