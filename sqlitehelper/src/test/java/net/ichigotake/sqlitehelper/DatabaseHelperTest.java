@@ -8,7 +8,7 @@ import android.os.Build;
 import junit.framework.Assert;
 
 import net.ichigotake.sqlitehelper.schema.FieldAttribute;
-import net.ichigotake.sqlitehelper.schema.TableDefinition;
+import net.ichigotake.sqlitehelper.schema.DatabaseTable;
 import net.ichigotake.sqlitehelper.schema.TableField;
 import net.ichigotake.sqlitehelper.schema.TableFieldType;
 import net.ichigotake.sqlitehelper.schema.TableSchema;
@@ -80,8 +80,8 @@ class ConfigurationAfterUpgrade extends ConfigurationBeforeUpgrade {
     }
 
     @Override
-    public List<TableDefinition> getDatabaseTables() {
-        return Collections.<TableDefinition>singletonList(new MockTableDefinitionForUpgrade());
+    public List<DatabaseTable> getDatabaseTables() {
+        return Collections.<DatabaseTable>singletonList(new MockTableDefinitionForUpgrade());
     }
 
 }

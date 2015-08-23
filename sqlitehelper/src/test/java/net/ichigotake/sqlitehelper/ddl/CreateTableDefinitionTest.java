@@ -11,7 +11,7 @@ import net.ichigotake.sqlitehelper.DatabaseHelper;
 import net.ichigotake.sqlitehelper.MockConfiguration;
 import net.ichigotake.sqlitehelper.MockTableDefinition;
 import net.ichigotake.sqlitehelper.schema.Index;
-import net.ichigotake.sqlitehelper.schema.TableDefinition;
+import net.ichigotake.sqlitehelper.schema.DatabaseTable;
 import net.ichigotake.sqlitehelper.schema.TableSchema;
 import net.ichigotake.sqlitehelper.schema.UniqueField;
 
@@ -25,7 +25,7 @@ import org.robolectric.shadows.ShadowApplication;
 @RunWith(RobolectricGradleTestRunner.class)
 public class CreateTableDefinitionTest {
     
-    private TableDefinition mock() {
+    private DatabaseTable mock() {
         return new MockTableForCreateTableDefinition();
     }
     

@@ -15,12 +15,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-		new MigrationHelper().onCreate(db, configuration);
+		new DatabaseMigrationHelper().onCreate(db, configuration);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        new MigrationHelper().onUpgrade(db, oldVersion, newVersion, configuration);
+        new DatabaseMigrationHelper().onUpgrade(db, oldVersion, newVersion, configuration);
     }
 
     public Configuration getConfiguration() {
